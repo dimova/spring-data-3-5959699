@@ -1,25 +1,22 @@
 package com.example.university.dao;
 
-import com.example.university.PersistenceJPAConfig;
+import static com.example.university.business.CourseFilter.filterBy;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
 import com.example.university.business.CourseFilter;
 import com.example.university.business.DynamicQueryService;
 import com.example.university.business.UniversityService;
 import com.example.university.domain.Department;
 import com.example.university.domain.Staff;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-
-import static com.example.university.business.CourseFilter.filterBy;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Test Criteria-based queries
  */
-@ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = { PersistenceJPAConfig.class })
+@SpringBootTest
 public class CriteriaQueryTest {
 
     @Autowired
