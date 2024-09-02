@@ -14,7 +14,8 @@
     "vscode": {
       "extensions": [
         "GitHub.github-vscode-theme",
-        "vmware.vscode-boot-dev-pack"
+        "vmware.vscode-boot-dev-pack",
+        "vscjava.vscode-java-test"
       ]
     }
   },
