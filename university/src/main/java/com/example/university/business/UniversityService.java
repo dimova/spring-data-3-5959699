@@ -74,9 +74,6 @@ public class UniversityService {
     public void deleteAll() {
         try {
             studentDao.deleteAll();
-            courseDao.deleteAll();
-            departmentDao.deleteAll();
-            staffDao.deleteAll();
         } catch (Exception e) {
             e.printStackTrace();
         }
