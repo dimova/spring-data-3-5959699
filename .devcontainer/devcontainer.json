@@ -1,6 +1,5 @@
 {
   "name": "Java",
-  // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
   "image": "mcr.microsoft.com/devcontainers/java:1-21-bullseye",
   "features": {
     "ghcr.io/devcontainers/features/java:1": {
@@ -20,6 +19,4 @@
   },
   "onCreateCommand": "echo PS1='\"$ \"' >> ~/.bashrc",
   "postAttachCommand": "git pull --all"
-  // Update welcome text and set terminal prompt to '$ '
 }
-// DevContainer Reference: https://code.visualstudio.com/docs/remote/devcontainerjson-reference
