@@ -11,7 +11,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.example.university.business.UniversityService;
 import com.example.university.domain.Staff;
-import com.example.university.repo.StaffRepo;
 
 /**
  * Tests that verify simple CRUD methods
@@ -23,7 +22,7 @@ public class SimpleDBCrudTest {
     private UniversityService universityService;
 
     @Autowired
-    private StaffRepo staffRepo;
+    private StaffDao staffDao;
 
     private List<Staff> allStaff;
     private Optional<Staff> oneStaff;
@@ -42,17 +41,17 @@ public class SimpleDBCrudTest {
         // Test Find by Id
         Staff deanThomas = allStaff.get(0);
         System.out.println(deanThomas);
-        assertEquals(deanThomas, staffRepo.findById(deanThomas.getId()).get());
+        assertEquals(deanThomas, staffDao.findById(deanThomas.getId()).get());
 
         // Test Update, Change first Name to Patrick
         deanThomas.getMember().setFirstName("Patrick");
-        staffRepo.save(deanThomas);
+        staffDao.save(deanThomas);
 
         assertEquals("Patrick",
-                staffRepo.findById(deanThomas.getId()).get().getMember().getFirstName());
+                staffDao.findById(deanThomas.getId()).get().getMember().getFirstName());
 
-        staffRepo.delete(deanThomas);
-        allStaff = staffRepo.findAll();
+        staffDao.delete(deanThomas);
+        allStaff = staffDao.findAll();
         assertEquals(totalStaff -1, allStaff.size());
         allStaff.stream().forEach(System.out::println);
     }
