@@ -12,6 +12,8 @@ import com.example.university.business.DynamicQueryService;
 import com.example.university.business.UniversityService;
 import com.example.university.domain.Department;
 import com.example.university.domain.Staff;
+import com.example.university.repo.DepartmentRepo;
+import com.example.university.repo.StaffRepo;
 
 /**
  * Test Criteria-based queries
@@ -24,15 +26,15 @@ public class CriteriaQueryTest {
     @Autowired
     private UniversityService universityService;
     @Autowired
-    private DepartmentDao departmentDao;
+    private DepartmentRepo departmentRepo;
     @Autowired
-    private StaffDao staffDao;
+    private StaffRepo staffRepo;
 
     @Test
     void findByCriteria() {
         UniversityFactory.fillUniversity(universityService);
-        Department humanities = departmentDao.findByName("Humanities").get();
-        Staff professorBlack = staffDao.findByLastName("Black").stream().findFirst().get();
+        Department humanities = departmentRepo.findByName("Humanities").get();
+        Staff professorBlack = staffRepo.findByLastName("Black").stream().findFirst().get();
 
         System.out.println('\n' + "*** All Humanities Courses");
         queryAndVerify(filterBy().department(humanities));
