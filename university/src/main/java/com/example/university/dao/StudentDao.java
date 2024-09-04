@@ -20,24 +20,6 @@ public class StudentDao {
         this.em = emf.createEntityManager();
     }
     
-    List<Student> findByFullTime(boolean fullTime){
-        TypedQuery<Student> query = em.createQuery(
-                "SELECT s FROM Student s WHERE s.fullTime = :fullTime" , Student.class);
-        return query.setParameter("fullTime", fullTime).getResultList();
-    }
-
-    List<Student> findByAge(Integer age) {
-        TypedQuery<Student> query = em.createQuery(
-                "SELECT s FROM Student s WHERE s.age = :age" , Student.class);
-        return query.setParameter("age", age).getResultList();
-    }
-
-    List<Student> findByLastName(String lastName){
-        TypedQuery<Student> query = em.createQuery(
-                "SELECT s FROM Student s WHERE s.attendee.lastName = :lastName" , Student.class);
-        return query.setParameter("lastName", lastName).getResultList();
-    }
-
 
     Optional<Student> findOldest() {
         TypedQuery<Student> query = em.createQuery(
