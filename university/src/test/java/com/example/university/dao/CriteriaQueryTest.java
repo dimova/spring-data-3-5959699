@@ -2,6 +2,7 @@ package com.example.university.dao;
 
 import static com.example.university.business.CourseFilter.filterBy;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import com.example.university.business.CourseFilter;
 import com.example.university.business.DynamicQueryService;
 import com.example.university.business.UniversityService;
 import com.example.university.domain.Department;
+import com.example.university.domain.Course;
 import com.example.university.domain.Staff;
 import com.example.university.repo.DepartmentRepo;
 import com.example.university.repo.StaffRepo;
@@ -54,12 +56,16 @@ public class CriteriaQueryTest {
 
 
     private void queryAndVerify(CourseFilter filter) {
-        queryService.findCoursesByCriteria(filter)
-                .forEach(course -> {
-                    filter.getInstructor().ifPresent(i -> assertEquals(i, course.getInstructor()));
-                    filter.getCredits().ifPresent(c -> assertEquals(c, course.getCredits()));
-                    filter.getDepartment().ifPresent(prof -> assertEquals(prof, course.getDepartment()));
-                    System.out.println(course);
-                });
+        findByCourseFilter(filter)
+        .forEach(course -> {
+            filter.getInstructor().ifPresent(i -> assertEquals(i, course.getInstructor()));
+            filter.getCredits().ifPresent(c -> assertEquals(c, course.getCredits()));
+            filter.getDepartment().ifPresent(prof -> assertEquals(prof, course.getDepartment()));
+            System.out.println(course);
+        });
+    }
+
+    private List<Course> findByCourseFilter(CourseFilter filter) {
+        return queryService.findCoursesByCriteria(filter);
     }
 }
