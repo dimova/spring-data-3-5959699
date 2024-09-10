@@ -20,15 +20,15 @@ insert into department (id, name, chair_id) values
 insert into course (id, name, credits, instructor_id, department_id) values
 (31, 'English 101', 3, 10, 21),
 (32, 'English 201', 3, 5, 21),
-(33, 'English 301', 3, 10, 21),
+(33, 'English 301', 4, 10, 21),
 (34, 'Chemistry', 3, 7, 22),
 (35, 'Physics', 3, 7, 22),
 (36, 'C Programming', 3, 8, 22),
-(37, 'Java Programming', 3, 8, 22),
+(37, 'Java Programming', 4, 8, 22),
 (38, 'History 101', 3, 6, 23),
 (39, 'Anthropology', 3, 11, 23),
 (40, 'Sociology', 3, 11, 23),
-(41, 'Psychology', 3, 9, 23),
+(41, 'Psychology', 3, 10, 23),
 (42, 'Chemistry Lab', 1, 7, 22),
 (43, 'Physics Lab', 1, 7, 22);
 
