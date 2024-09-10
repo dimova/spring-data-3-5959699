@@ -54,7 +54,7 @@ public class CriteriaQueryTest {
     }
 
     private void find(CourseFilter filter) {
-        queryService.findCoursesByCriteria(filter)
+        queryService.filterBySpecification(filter)
             .forEach(course -> {
                 assertTrue(filter.meetsCriteria(course));
                 System.out.println(course);
