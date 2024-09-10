@@ -43,7 +43,8 @@ public class CourseFilter {
     public Optional<Staff> getInstructor() {
         return instructor;
     }
-    
+
+        
     public boolean meetsCriteria(Course course) {
         return (instructor.map(i -> course.getInstructor().equals(i)).orElse(true)
                 && credits.map(c -> course.getCredits().equals(c)).orElse(true)
