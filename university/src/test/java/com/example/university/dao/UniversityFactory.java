@@ -52,7 +52,7 @@ class UniversityFactory {
         Course history101 = service.createCourse("History 101", 3, profMiller, socialSciences);
         Course anthro = service.createCourse("Anthropology ", 3, profKing, socialSciences, history101);
         Course sociology = service.createCourse("Sociology", 3, profKing, socialSciences, history101);
-        Course psych = service.createCourse("Psychology", 3, profWhite, socialSciences, english101);
+        Course psych = service.createCourse("Psychology", 3, profBlack, socialSciences, english101);
 
     }
 
