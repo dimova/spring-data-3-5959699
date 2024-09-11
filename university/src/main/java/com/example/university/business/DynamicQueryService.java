@@ -3,6 +3,7 @@ package com.example.university.business;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import com.example.university.domain.Course;
@@ -47,5 +48,13 @@ public class DynamicQueryService {
         List<Course> courses = new ArrayList<>();
         queryDslRepo.findAll(pred).forEach(courses::add);
         return courses;
+    }
+
+    public List<Course> filterByExample(CourseFilter filter) {
+        Course course = new Course(null,
+                filter.getCredits().orElse(null),
+                filter.getInstructor().orElse(null),
+                filter.getDepartment().orElse(null));
+        return courseRepo.findAll(Example.of(course));
     }
 }
