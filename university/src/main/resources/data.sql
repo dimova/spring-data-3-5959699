@@ -40,3 +40,7 @@ insert into course_prerequisites (id, id_of_course, id_prerequisite_course) valu
 (54, 40, 38),
 (55, 41, 38);
 
+ALTER TABLE staff_member ALTER COLUMN id RESTART WITH (SELECT MAX(id) FROM staff_member) + 1;
+ALTER TABLE department ALTER COLUMN id RESTART WITH (SELECT MAX(id) FROM department) + 1;
+ALTER TABLE course ALTER COLUMN id RESTART WITH (SELECT MAX(id) FROM course) + 1;
+ALTER TABLE course_prerequisites ALTER COLUMN id RESTART WITH (SELECT MAX(id) FROM course_prerequisites) + 1;
