@@ -11,7 +11,7 @@ services:
     tty: true
     volumes:
       - db-data:/var/lib/mysql
-      - ./mysql/schema.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./mysql/schema.sql:/docker-entrypoint-initdb.d/schema.sql
 # Volumes
 volumes:
   db-data:
