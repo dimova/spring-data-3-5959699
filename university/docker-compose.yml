@@ -10,8 +10,8 @@ services:
       MYSQL_PASSWORD: pass
     tty: true
     volumes:
-      - db-data:/var/lib/mysql
+      - mysql-db-data:/var/lib/mysql
       - ./mysql/schema.sql:/docker-entrypoint-initdb.d/schema.sql
 # Volumes
 volumes:
-  db-data:
+  mysql-db-data:
