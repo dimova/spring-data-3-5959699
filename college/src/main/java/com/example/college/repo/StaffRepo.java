@@ -1,11 +1,12 @@
 package com.example.college.repo;
 import com.example.college.domain.Staff;
 
-import java.util.List;
+import reactor.core.publisher.Flux;
 
-import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface StaffRepo extends MongoRepository<Staff, String>{
+import org.springframework.data.repository.reactive.ReactiveCrudRepository;
+
+public interface StaffRepo extends ReactiveCrudRepository<Staff, String>{
   
-  List<Staff> findByMemberLastName(String lastName);
+  Flux<Staff> findByMemberLastName(String lastName);
 }
