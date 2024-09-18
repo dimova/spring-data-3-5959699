@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.example</groupId>
 	<artifactId>college</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>3.0.0</version>
 	<name>college</name>
 	<description>Example with Spring Boot MongoDb Reactive Repositories</description>
 	<url/>
