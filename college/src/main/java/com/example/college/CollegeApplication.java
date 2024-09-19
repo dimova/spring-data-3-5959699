@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,17 +35,20 @@ public class CollegeApplication implements CommandLineRunner{
 
     @Override
     public void run(String... args) {
+        int staffCount = staffRepo.count().block();
         Mono<Staff> deanJonesMono = staffRepo.save(new Staff(new Person("John", "Jones")));
         Mono<Staff> deanMartinMono = staffRepo.save(new Staff(new Person("John", "Martin")));
-        System.out.println("Staff count = " + staffRepo.count().block());
+        staffCount = staffRepo.count().block();
         Staff deanJones = deanJonesMono.block();
         Staff deanMartin = deanMartinMono.block();
-        System.out.println("blocked(): Staff count = " + staffRepo.count().block());
+        staffCount = staffRepo.count().block();
+        
         Flux<Department> departmentFlux = departmentRepo.saveAll(
-                Arrays.asList(new Department("Humanities", deanJones),
+                List.of(new Department("Humanities", deanJones),
                         new Department("Natural Sciences", deanMartin),
                         new Department("Social Sciences", deanJones)));
-        departmentFlux.subscribe();
+        departmentFlux.subscribe(dept -> 
+            System.out.println(dept.getName() + " Saved"));
     }
 
     @GetMapping("/staff")
