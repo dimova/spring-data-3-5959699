@@ -32,15 +32,14 @@ insert into course (id, name, credits, instructor_id, department_id) values
 (42, 'Chemistry Lab', 1, 7, 22),
 (43, 'Physics Lab', 1, 7, 22);
 
-insert into course_prerequisites (id, id_of_course, id_prerequisite_course) values
-(50, 32, 31),
-(51, 33, 32),
-(52, 35, 34),
-(53, 39, 38),
-(54, 40, 38),
-(55, 41, 38);
+insert into course_prerequisites (id_of_course, id_prerequisite_course) values
+(32, 31),
+(33, 32),
+(35, 34),
+(39, 38),
+(40, 38),
+(41, 38);
 
 ALTER TABLE staff_member ALTER COLUMN id RESTART WITH (SELECT MAX(id) FROM staff_member) + 1;
 ALTER TABLE department ALTER COLUMN id RESTART WITH (SELECT MAX(id) FROM department) + 1;
 ALTER TABLE course ALTER COLUMN id RESTART WITH (SELECT MAX(id) FROM course) + 1;
-ALTER TABLE course_prerequisites ALTER COLUMN id RESTART WITH (SELECT MAX(id) FROM course_prerequisites) + 1;
