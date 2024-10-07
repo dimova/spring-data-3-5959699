@@ -33,6 +33,10 @@ public class Department {
     return name;
   }
 
+  public String getChairId() {
+    return chair.getId();
+  }
+  
   public Staff getChair() {
     return chair;
   }
