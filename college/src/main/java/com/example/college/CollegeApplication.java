@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,31 +23,39 @@ import reactor.core.publisher.Mono;
 @RestController
 public class CollegeApplication implements CommandLineRunner{
 
-    @Autowired
-    private DepartmentRepo departmentRepo;
-
-    @Autowired
-    private StaffRepo staffRepo;
     
     public static void main(String[] args) {
         SpringApplication.run(CollegeApplication.class, args);
     }
 
+    @Autowired
+    private DepartmentRepo departmentRepo;
+
+    @Autowired
+    private StaffRepo staffRepo;
+        
+    private Mono<Staff> saveStaff(Staff staff) {
+    return staffRepo.save(staff);
+    }
+
+    private Flux<Department> saveDepartments(List<Department> departments) {
+    return departmentRepo.saveAll(departments);
+    }
+
     @Override
     public void run(String... args) {
     
-        Staff deanJones = staffRepo
-        .save(new Staff(new Person("John", "Jones")))
-        .block();
-        Staff deanMartin = staffRepo
-        .save(new Staff(new Person("John", "Martin")))
-        .block();
+        Mono<Staff> deanJonesMono = saveStaff(new Staff(new Person("John", "Jones")));
+        Mono<Staff> deanMartinMono = saveStaff(new Staff(new Person("John", "Martin")));
+        Staff deanJones = deanJonesMono.block();
         
-        departmentRepo.saveAll(
+        
+        saveDepartments(
             List.of(new Department("Humanities", deanJones),
-                    new Department("Natural Sciences", deanMartin),
+                    new Department("Natural Sciences", deanMartinMono.block()),
                     new Department("Social Sciences", deanJones)))
-            .subscribe();
+            .subscribe(d ->
+             System.out.println(d));
     }
 
     @GetMapping("/staff")
