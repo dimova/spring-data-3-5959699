@@ -29,6 +29,10 @@ public class Department {
     return id;
   }
 
+  public String getChairId() {
+    return chair.getId();
+  }
+
   public String getName() {
     return name;
   }
