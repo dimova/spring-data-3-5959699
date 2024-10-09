@@ -34,15 +34,22 @@ public class CollegeApplication implements CommandLineRunner{
     @Autowired
     private StaffRepo staffRepo;
 
+    private Mono<Staff> promiseToSaveStaff(Staff staff) {
+        return staffRepo.save(staff);
+    }
+
+    private Flux<Department> promiseToSaveDepartments(List<Department> departments) {
+        return departmentRepo.saveAll(departments);
+    }
     @Override
     public void run(String... args) {
     
-        Mono<Staff> deanJonesMono = staffRepo.save(new Staff(new Person("John", "Jones")));
-        Mono<Staff> deanMartinMono = staffRepo.save(new Staff(new Person("John", "Martin")));
+        Mono<Staff> deanJonesMono = promiseToSaveStaff(new Staff(new Person("John", "Jones")));
+        Mono<Staff> deanMartinMono = promiseToSaveStaff(new Staff(new Person("John", "Martin")));
         Staff deanJones = deanJonesMono.block();
         
         
-        departmentRepo.saveAll(
+        promiseToSaveDepartments(
             List.of(new Department("Humanities", deanJones),
                     new Department("Natural Sciences", deanMartinMono.block()),
                     new Department("Social Sciences", deanJones)))
