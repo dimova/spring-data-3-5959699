@@ -8,14 +8,15 @@ import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 
 import com.example.college.domain.Department;
 
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 public interface DepartmentRepo extends ReactiveCrudRepository<Department, String>{
   
   Mono<Department> findByName(String name);
 
-  Mono<List<Department>> findByChairId(String chairId);
+  Flux<Department> findByChairId(String chairId);
 
   @Query("{ 'name' : { $regex: ?0 } }")
-  Mono<List<Department>> findNameByPattern(String pattern);
+  Flux<Department> findNameByPattern(String pattern);
 }
