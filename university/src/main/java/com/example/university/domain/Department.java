@@ -1,9 +1,15 @@
 package com.example.university.domain;
 
-import jakarta.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 /**
  * JPA Entity for a Department of study at the University.
@@ -25,10 +31,6 @@ public class Department {
     @JoinColumn(name="chair_id")
     private Staff chair;
 
-//    @OneToMany
-//    @JoinTable(name = "department_course", joinColumns = {@JoinColumn(name = "department_id")})
-//    private List<Course> courses = new ArrayList<>();
-
     public Department(String name, Staff chair) {
         this.name = name;
         this.chair = chair;
@@ -45,17 +47,9 @@ public class Department {
         return name;
     }
 
-//    public void addCourse(Course course) {
-//        courses.add(course);
-//    }
-
     public Staff getChair() {
         return chair;
     }
-
-//    public List<Course> getCourses() {
-//        return courses;
-//    }
 
     public void setName(String name) {
         this.name = name;
