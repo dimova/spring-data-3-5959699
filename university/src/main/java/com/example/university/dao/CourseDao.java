@@ -35,10 +35,10 @@ public class CourseDao {
         return query.setParameter("chair", chair).getResultList();
     }
 
-    public List<Course> findCourseByPrerequisite(int id) {
+    public List<Course> findByPrerequisites(Course course) {
         TypedQuery<Course> query = em.createQuery(
                 "Select c from Course c join c.prerequisites p where p.id = ?1", Course.class);
-        return query.setParameter(1, id).getResultList();
+        return query.setParameter(1, course.getId()).getResultList();
     }
 
     public List<Course> findByCredits(int credits) {
