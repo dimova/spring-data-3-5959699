@@ -45,17 +45,9 @@ public class Department {
         return name;
     }
 
-//    public void addCourse(Course course) {
-//        courses.add(course);
-//    }
-
     public Staff getChair() {
         return chair;
     }
-
-//    public List<Course> getCourses() {
-//        return courses;
-//    }
 
     public void setName(String name) {
         this.name = name;
@@ -64,10 +56,6 @@ public class Department {
     public void setChair(Staff chair) {
         this.chair = chair;
     }
-
-// //   public void setCourses(List<Course> courses) {
-//        this.courses = courses;
-//    }
 
     @Override
     public String toString() {
