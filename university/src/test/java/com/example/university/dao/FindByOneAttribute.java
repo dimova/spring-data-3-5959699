@@ -32,6 +32,7 @@ public class FindByOneAttribute {
     private CourseDao courseDao;
 
     private List<Staff> allStaff;
+
     @Test
     public void findByOneAttribute() {
         // Test Create
@@ -44,7 +45,6 @@ public class FindByOneAttribute {
         studentDao.findByLastName("King").stream()
                 .forEach(s -> assertTrue(s.getAttendee().getLastName().equals("King")));
 
-
         List<Course> allCourses = universityService.findAllCourses();
         Course firstCourse = allCourses.get(0);
 
@@ -52,12 +52,13 @@ public class FindByOneAttribute {
 
         assertEquals(firstCourse.getDepartment().getChair().getMember().getLastName(),
                 courseDao.findByChairLastName(firstCourse.getDepartment().getChair().getMember().getLastName())
-                    .get(0).getDepartment().getChair().getMember().getLastName());
+                        .get(0).getDepartment().getChair().getMember().getLastName());
 
-        Course courseWithPrerequisites = allCourses.stream().filter(x->x.getPrerequisites().size() > 0).findFirst().get();
-        Integer prerequisiteId = courseWithPrerequisites.getPrerequisites().get(0).getId();
-        assertTrue(courseDao.findCourseByPrerequisite(prerequisiteId).contains(courseWithPrerequisites));
+        Course courseWithPrerequisites = allCourses.stream().filter(x -> x.getPrerequisites().size() > 0).findFirst()
+                .get();
+        Course prerequisite = courseWithPrerequisites.getPrerequisites().get(0);
+        assertTrue(courseDao.findCourseByPrerequisites(prerequisite).contains(courseWithPrerequisites));
 
-        courseDao.findByCredits(3).stream().forEach(x-> assertEquals(3, x.getCredits()));
+        courseDao.findByCredits(3).stream().forEach(x -> assertEquals(3, x.getCredits()));
     }
 }

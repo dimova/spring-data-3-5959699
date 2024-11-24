@@ -46,7 +46,6 @@ public class CourseDao {
         em.getTransaction().commit();
     }
 
-
     public void deleteAll() {
         em.getTransaction().begin();
         em.createQuery("DELETE FROM Course").executeUpdate();
@@ -65,10 +64,10 @@ public class CourseDao {
         return query.setParameter("chair", chair).getResultList();
     }
 
-    public List<Course> findCourseByPrerequisite(int id) {
+    public List<Course> findCourseByPrerequisites(Course prerequisite) {
         TypedQuery<Course> query = em.createQuery(
                 "Select c from Course c join c.prerequisites p where p.id = ?1", Course.class);
-        return query.setParameter(1, id).getResultList();
+        return query.setParameter(1, prerequisite.getId()).getResultList();
     }
 
     public List<Course> findByCredits(int credits) {
@@ -77,7 +76,7 @@ public class CourseDao {
         return query.setParameter("credits", credits).getResultList();
     }
 
-    public List<Course> findByCriteria(CriteriaQuery<Course> criteria){
+    public List<Course> findByCriteria(CriteriaQuery<Course> criteria) {
         return em.createQuery(criteria).getResultList();
     }
 }
