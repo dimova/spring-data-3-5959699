@@ -52,9 +52,9 @@ public class FindByOneAttribute {
                     .get(0).getDepartment().getChair().getMember().getLastName());
 
         Course courseWithPrerequisites = allCourses.stream().filter(x->x.getPrerequisites().size() > 0).findFirst().get();
-        Integer prerequisiteId = courseWithPrerequisites.getPrerequisites().get(0).getId();
-        assertTrue(courseDao.findCourseByPrerequisite(prerequisiteId).contains(courseWithPrerequisites));
-
+ 
+        Course prerequisite = courseWithPrerequisites.getPrerequisites().get(0);
+        assertTrue(courseDao.findByPrerequisites(prerequisite).contains(courseWithPrerequisites));
         courseDao.findByCredits(3).stream().forEach(x-> assertEquals(3, x.getCredits()));
     }
 }
