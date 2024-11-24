@@ -69,7 +69,7 @@ public class CourseDao {
         TypedQuery<Course> query = em.createQuery(
                 "Select c from Course c join c.prerequisites p where p.id = ?1", Course.class);
         return query.setParameter(1, course.getId()).getResultList();
-    }
+    }  
     
     public List<Course> findByCredits(int credits) {
         TypedQuery<Course> query = em.createQuery(
