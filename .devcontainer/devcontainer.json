@@ -15,7 +15,7 @@
       "extensions": [
         "GitHub.github-vscode-theme",
         "vmware.vscode-boot-dev-pack",
-        "vscjava.vscode-java-test"
+        "vscjava.vscode-java-pack"
       ]
     }
   },
@@ -24,3 +24,4 @@
   // Update welcome text and set terminal prompt to '$ '
 }
 // DevContainer Reference: https://code.visualstudio.com/docs/remote/devcontainerjson-reference
+//        "vscjava.vscode-java-test"
